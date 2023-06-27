@@ -1,34 +1,27 @@
-import React from 'react';
-import { Linking,
-    View, 
-    Text,
-    Image, 
-    TouchableOpacity } from 'react-native';
-import About from './Components/About';
-// import Programmation from './Components/Programmation';
-import Map from './Components/Map';
-import style from './Components/Style';
-import Programmation from './Components/Programmation';
-import Bouton from './Components/Bouton';
-import Entete from './Components/Entete';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Maponglet from './screens/Maponglet';
+import Homescreen from './screens/Homescreen';
 
 const App = () => {
+  const Stack = createNativeStackNavigator();
 
-    const retourAccueil = () =>{
-        Linking.openURL('')
-    }
-return (
-<View style={{flex: 1,backgroundColor : "#fff",alignItems : 'center',}}>
-<Entete />
-<About />
-<Programmation/>
-<Map /> 
-<Bouton />
-</View>
-);
-};
+  return (
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }} >
+          <Stack.Screen name="Home" component={Homescreen} />
+          <Stack.Screen name="Map" component={Maponglet} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
+  );
+}
+
 
 export default App;
+
 
 
 

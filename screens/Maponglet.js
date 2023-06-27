@@ -1,17 +1,14 @@
 import React from "react";
-import { View, StyleSheet, Dimensions} from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import MapView from 'react-native-maps';
-import { useNavigation } from '@react-navigation/native';
 
-
-const Map = () =>{
-  const navigation = useNavigation();
+function Maponglet(){
     return (
       <View style={styles.container}>
           <MapView
-            style={styles.map}
-            onPress={() => navigation.navigate('Map')}
+          style={styles.map}
             initialRegion={{
+              
               latitude: 48.909578,
               longitude: 2.127237,
               latitudeDelta: 0.0922,
@@ -24,15 +21,13 @@ const Map = () =>{
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor : '#08d9d6',
-    borderWidth : 5,
 
   },
-  map: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height /3,
-  },
-});
-export default Map;
+map :{
+  width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height
+}});
+  export default Maponglet;

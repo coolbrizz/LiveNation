@@ -1,7 +1,6 @@
 import React from "react";
 import { Image, Text, View,StyleSheet } from 'react-native';
 
-
 export default class Programmation extends React.Component{
     render(){
         return( 
@@ -9,7 +8,7 @@ export default class Programmation extends React.Component{
                 <View style = {styles.textContainer}>
                     <Text style = {styles.text}>Menu</Text>
                 </View>
-                <Image source={require('../Images/logoMspr.png')} style={{ width: 400, height: 100 }} />
+                <Image source={require('../Images/logoMspr.png')} style={{ width: 400, height: 80 }} />
             </View>
         )}}
         const styles = StyleSheet.create({
