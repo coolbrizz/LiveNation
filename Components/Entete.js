@@ -1,31 +1,31 @@
+import 'react-native-gesture-handler';
 import React from "react";
-import { Image, Text, View,StyleSheet } from 'react-native';
+import { Image, Text, View,StyleSheet,TouchableOpacity,Button } from 'react-native';
 
-export default class Programmation extends React.Component{
-    render(){
+const Entete = ({navigation}) => {
         return( 
             <View style = {styles.container}>
+                <Image source={require('../Images/logo.png')} style={{ width: 420, height: 100, }} />
                 <View style = {styles.textContainer}>
-                    <Text style = {styles.text}>Menu</Text>
+                    <TouchableOpacity onPress={() => navigation.openDrawer()} >
+                        <Image source={require('../Images/menu.png')} 
+                        style={styles.menuburger}
+                        />
+                    </TouchableOpacity>
                 </View>
-                <Image source={require('../Images/logoMspr.png')} style={{ width: 400, height: 80 }} />
             </View>
-        )}}
-        const styles = StyleSheet.create({
+        )}
 
+        const styles = StyleSheet.create({
             textContainer: {
               position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
               alignItems: "center",
               justifyContent: "center",
             },
-            text: {
-              fontSize: 24,
-              fontWeight: "bold",
-              color: "white",
-              backgroundColor: "rgba(0, 0, 0, 0.5)",
-              padding: 10,
+            menuburger: {
+                height : 25,
+                width : 25,
+                top : 5,
+                left : 10,
             },})
+            export default Entete

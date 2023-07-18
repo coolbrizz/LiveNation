@@ -1,9 +1,10 @@
-const  bclair = '#08d9d6'
+const  bclair = '#4ae8d4'
+const gfoncé = '#28292b'
 
 export default {
 
     notif :{
-        width : 400, 
+        width : 420, 
         height : 60, 
         backgroundColor: 'red',
         justifyContent : 'center',
@@ -11,8 +12,8 @@ export default {
         fontWeight: 'bold'
       },
       notifGeneral: {
-        width : 400, 
-        height : 50, 
+        width : 420, 
+        height : 30, 
         backgroundColor: bclair,
         justifyContent : 'center',
         alignItems : 'center',
@@ -27,9 +28,9 @@ export default {
           textAlign : 'center',
       },
       bouton : {
-        width : 400, 
+        width : 420, 
         height : 60, 
-        backgroundColor: '#252a34',
+        backgroundColor: gfoncé,
         justifyContent : 'center',
         alignItems : 'center', 
       },
@@ -40,7 +41,7 @@ export default {
       titreProgrammation : {
         fontSize : 30,
         color : '#252a34',
-        paddingTop : 10,
+        paddingTop : 5,
       },
       titre :{
         alignItems : 'center',
