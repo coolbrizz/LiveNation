@@ -26,9 +26,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor : '#4ae8d4',
-    borderWidth : 5,
-
   },
   map: {
     width: Dimensions.get('window').width,

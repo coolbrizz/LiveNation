@@ -6,6 +6,8 @@ export default class NouvelleG extends React.Component{
   render(){
     return(
         <View  style={style.notifGeneral}>
-        <Text>Cliquez sur la Map pour retrouvez nos points de contact</Text>
+        <Text style={{color : '#ffffff'}}>Cliquez sur la Map pour retrouvez nos points de contact</Text>
       </View>
     )}}
+
+    

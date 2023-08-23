@@ -1,5 +1,5 @@
-const  bclair = '#4ae8d4'
-const gfoncé = '#28292b'
+const  rouge = '#fe0122'
+const gfoncé = '#000000'
 
 export default {
 
@@ -14,18 +14,11 @@ export default {
       notifGeneral: {
         width : 420, 
         height : 30, 
-        backgroundColor: bclair,
+        backgroundColor: rouge,
         justifyContent : 'center',
         alignItems : 'center',
-      },
-      messageUrgent :{
-        color : 'white',
-        justifyContent : 'center',
-         alignItems :'center',
-          padding : 5,
-          fontWeight: 'bold',
-          fontSize : 20,
-          textAlign : 'center',
+        borderColor : '#28292b',
+        borderWidth : 1,
       },
       bouton : {
         width : 420, 
@@ -35,7 +28,7 @@ export default {
         alignItems : 'center', 
       },
       boutonText : {
-        color :bclair,
+        color :rouge,
         fontSize : 40,
       },
       titreProgrammation : {
@@ -59,6 +52,14 @@ export default {
         padding : 10,
         paddingLeft : 30,
         paddingRight : 30,
-      }
+      },
+      titleFaq : {
+        fontWeight : 'bold' ,
+         fontSize : 20, 
+         textAlign :'center',
+          padding : 10, 
+          color : rouge,
+      },
+
 
 }
