@@ -2,7 +2,6 @@ import { View, Text,ScrollView,TouchableOpacity } from 'react-native'
 import React,{useState,useRef} from 'react'
 import Style from '../config/Style'
 import Entete from '../Components/Entete'
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { StyleSheet} from 'react-native';
 
 const Faq = () => {
@@ -62,7 +61,7 @@ const Faq = () => {
       </ScrollView>
       {scrollPosition > 0 && (
         <TouchableOpacity onPress={scrollToTop} style={styles.scrollToTopButton}>
-          <Icon name="arrow-up" size={24} color="black" />
+          <Text style={{fontSize : 60, fontWeight : 'bold'}}>&uarr;</Text>
         </TouchableOpacity>
       )}
     </View>
@@ -71,10 +70,9 @@ const Faq = () => {
 const styles = StyleSheet.create({
   scrollToTopButton: {
     position: 'absolute',
-    bottom: 20,
-    right: 20,
-    backgroundColor: 'blue',
-    borderRadius: 30,
+    bottom: 50,
+    right: -50,
+    borderRadius: 200,
     padding: 100,
   },
 });

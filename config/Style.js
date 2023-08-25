@@ -35,6 +35,8 @@ export default {
         fontSize : 30,
         color : '#252a34',
         paddingTop : 5,
+        textAlign : 'center', 
+        textDecorationLine: 'underline',
       },
       titre :{
         alignItems : 'center',
