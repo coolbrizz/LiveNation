@@ -1,26 +1,55 @@
-import React from "react";
-import { View, StyleSheet} from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, Text } from "react-native";
 import MapView, { Marker } from 'react-native-maps';
 import Entete from "../Components/Entete";
+import axios from "axios";
 
 function Maponglet() {
+  const [scene, setScene] = useState([]);
+
+  useEffect(() => {
+    const fetchWordPressData = async () => {
+      try {
+        const response = await axios.get(
+          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/venues"
+        );
+        setScene(response.data.venues);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchWordPressData();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Entete />
       <MapView
         style={styles.map}
         initialRegion={{
-          latitude: 48.909578,
-          longitude: 2.127237,
+          latitude: 48.830609,
+          longitude: 2.365844,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
       >
-        <Marker
-          coordinate={{ latitude: 48.909578, longitude: 2.127237 }}
-          title={"Scène 1"} // Enclosed title in double quotes
-          image={require('../Images/scene.png' )}
-        />
+        {scene.map((scene) => {
+          const latitude = parseFloat(scene.address);
+          const longitude = parseFloat(scene.city);
+
+          return (
+            <Marker
+              key={scene.id}
+              coordinate={{
+                latitude: latitude,
+                longitude: longitude,
+              }}
+              title={scene.venue}
+              image={require('../Images/scene.png')}
+            />
+          );
+        })}
       </MapView>
     </View>
   );
@@ -31,13 +60,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-
   },
-map :{
-  flex : 1,
-  width : '100%',
-  height : '100%',
-  // width: Dimensions.get('window').width,
-  //   height: Dimensions.get('window').height
-}});
-  export default Maponglet;
+  map: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+  },
+});
+
+export default Maponglet;

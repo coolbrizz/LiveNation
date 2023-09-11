@@ -25,7 +25,8 @@ export default {
         height : 60, 
         backgroundColor: gfoncé,
         justifyContent : 'center',
-        alignItems : 'center', 
+        alignItems : 'center',
+         
       },
       boutonText : {
         color :rouge,
@@ -36,7 +37,7 @@ export default {
         color : '#252a34',
         paddingTop : 5,
         textAlign : 'center', 
-        textDecorationLine: 'underline',
+        fontWeight :'bold',
       },
       titre :{
         alignItems : 'center',
@@ -62,6 +63,25 @@ export default {
           padding : 10, 
           color : rouge,
       },
+      text : {
+        color : 'black',
+      },
+      styleProgrammation :{
+        width: "80%",
+        padding: 10,
+        borderWidth: 2,
+        borderRadius: 8,
+        borderColor: '#fe0122',
+        margin: 6,
+        
+      },
+      titreGroup :{
+        fontSize : 20,
+        fontWeight : 'bold',
+        color : rouge,
+      }
+      
+
 
 
 }

@@ -9,6 +9,7 @@ import Informations from './screens/Informations';
 import Partenaires from './screens/Partenaires';
 import Programmescreen from './screens/Programmescreen';
 import Reseaux from './screens/Reseaux';
+import Group from './screens/Group';
 
 const Drawer = createDrawerNavigator();
 
@@ -26,7 +27,9 @@ export default function App() {
       headerStyle :{
         backgroundColor: '#000000',
         height : 30,
-      } }}>
+      },
+      headerTintColor: '#ffffff', 
+      }}>
         <Drawer.Screen name="Menu" component={Homescreen} />
         <Drawer.Screen name="Informations" component={Informations} />
         <Drawer.Screen name="Partenaires" component={Partenaires} />
@@ -34,6 +37,7 @@ export default function App() {
         <Drawer.Screen name="Map" component={Maponglet} />
         <Drawer.Screen name="Réseaux" component={Reseaux} />
         <Drawer.Screen name="Foire aux questions" component={Faq} />
+        <Drawer.Screen name="Group" component={Group}  options={{ titleShown: false }} />
       </Drawer.Navigator>
     </NavigationContainer>
 

@@ -12,8 +12,8 @@ const Map = () =>{
             style={styles.map}
             onPress={() => navigation.navigate('Map')}
             initialRegion={{
-              latitude: 48.909578,
-              longitude: 2.127237,
+              latitude: 48.830609,
+              longitude: 2.365844,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
             }}

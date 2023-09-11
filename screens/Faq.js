@@ -29,7 +29,7 @@ const Faq = () => {
       >
       <View style={{padding : 10, }}>
       <Text style ={{fontWeight : 'bold', margin : 5, color : '#000000'}}>Lorem ipsum, dolor sit amet consectetur adipisicing elit ?</Text> 
-       <Text> Cupiditate, nostrum ducimus! Eveniet minima possimus sunt sit debitis! Qui dolore expedita at sequi quisquam blanditiis dignissimos vitae sit debitis! Ut deleniti harum iure nobis soluta minima sapiente neque iste explicabo veritatis, officia modi. Mollitia molestiae minus vitae, itaque numquam dolore iste, perferendis, impedit sit beatae dolorum. Dicta, doloribus est alias quis harum totam culpa. Consequuntur omnis repellat odio laudantium nesciunt cum. Consectetur cumque perferendis tempore, ducimus quod facere tempora totam doloremque nihil, possimus ut quasi nam error sit maiores officia odit facilis sunt dolores mollitia eligendi, sequi provident ea. Eaque, aspernatur.
+       <Text> Cupiditate, nostrum ducimus! Eveniet minima possimus sunt sit debitis! Qui dolore expedita at sequi quisquam blanditiis dignissimos vitae. https://www.livenation.fr/ sit debitis! Ut deleniti harum iure nobis soluta minima sapiente neque iste explicabo veritatis, officia modi. Mollitia molestiae minus vitae, itaque numquam dolore iste, perferendis, impedit sit beatae dolorum. Dicta, doloribus est alias quis harum totam culpa. Consequuntur omnis repellat odio laudantium nesciunt cum. Consectetur cumque perferendis tempore, ducimus quod facere tempora totam doloremque nihil, possimus ut quasi nam error sit maiores officia odit facilis sunt dolores mollitia eligendi, sequi provident ea. Eaque, aspernatur.
       </Text>
       </View>
       <View style={{padding : 10}}>
@@ -44,7 +44,7 @@ const Faq = () => {
       </View>
       <View style={{padding : 10}}>
       <Text style ={{fontWeight : 'bold', margin : 5, color : '#000000'}}>Lorem ipsum, dolor sit amet consectetur adipisicing elit ?</Text> 
-       <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nobis nisi laborum cumque, id illum. Asperiores obcaecati quisquam minus reprehenderit tenetur qui deserunt doloribus praesentium voluptas maxime provident perferendis quibusdam, rerum et sint esse nemo atque quidem recusandae ut repellat! Mollitia quaerat quas exercitationem ad non, atque in ea doloremque.
+       <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum nobis nisi laborum cumque, id illum. Asperiores obcaecati quisquam minus reprehenderit tenetur : https://www.livenation.fr/. qui deserunt doloribus praesentium voluptas maxime provident perferendis quibusdam, rerum et sint esse nemo atque quidem recusandae ut repellat! Mollitia quaerat quas exercitationem ad non, atque in ea doloremque.
       </Text>
       </View>
       <View style={{padding : 10}}>
