@@ -50,12 +50,12 @@ const Group = () => {
   return (
     <View style={{flex : 1}}>
         <Entete />
-        <View style={{alignItems : 'center'}}>
-        <Text style={style.titreProgrammation}>{eventTitle}</Text>
-        <Image source={imageSource} style={{ width: 150, height: 200 ,padding : 10,margin : 10,borderRadius: 10,resizeMode : 'contain' }}  />
-        <View style={{color : 'black'}}>
-        <HTML source={{ html: eventId }} contentWidth={contentWidth} tagsStyles={htmlStyles} />
-        </View>
+        <View style={{flex : 1,alignItems : 'center'}}>
+          <Text style={style.titreProgrammation}>{eventTitle}</Text>
+          <Image source={imageSource} style={{ width: 150, height: 200 ,padding : 10,margin : 10,borderRadius: 10,resizeMode : 'contain' }}  />
+            <View style={{}}>
+            <HTML source={{ html: eventId }} contentWidth={contentWidth} tagsStyles={htmlStyles} />
+            </View>
       </View>
       <Bouton />
     </View>

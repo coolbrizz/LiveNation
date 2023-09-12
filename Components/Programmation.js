@@ -74,8 +74,8 @@ const Programmation = () => {
                       <Image
                         source={imageSource}
                         style={{
-                          width: 70,
-                          height:70,
+                          width: 80,
+                          height:80,
                           borderRadius: 10,
                           resizeMode: 'contain',
                         }}

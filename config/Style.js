@@ -67,7 +67,7 @@ export default {
         color : 'black',
       },
       styleProgrammation :{
-        width: "80%",
+        width: "90%",
         padding: 10,
         borderWidth: 2,
         borderRadius: 8,
