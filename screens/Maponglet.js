@@ -38,9 +38,6 @@ function Maponglet() {
           const latitude = parseFloat(scene.address);
           const longitude = parseFloat(scene.city);
           let imageSpot;
-          // if (scene.venue !== "Buvette" && scene.venue !=="Shop" ){
-          //   imageSpot= require('../Images/scene.png');
-          // }else if {
           switch (scene.venue){
             case"Toilettes" : 
             imageSpot= require('../Images/toilette.jpg');
@@ -55,7 +52,6 @@ function Maponglet() {
             imageSpot= require('../Images/scene.png');
             break
           }
-        // }
           return (
             <Marker
               key={scene.id}

@@ -5,11 +5,14 @@ import Style from "../config/Style";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from '@react-navigation/native';
 import Entete from "../Components/Entete";
-import Bouton from "../Components/Bouton"
+import Bouton from "../Components/Bouton";
 
+import Filtscene from "../Components/Filtscene";
 
 const Programmescreen = () => {
-  const [concert, setConcert] = useState(null);
+  const [concert, setConcert] = useState([]);
+
+
   useEffect(() => {
     const fetchWordPressData = async () => {
       try {
@@ -24,15 +27,23 @@ const Programmescreen = () => {
 
     fetchWordPressData();
   }, []);
+
+
+
   const navigation = useNavigation();
+
   return (
     <View style={{ flex: 1 }}>
       <Entete />
       <Text style={Style.titreProgrammation}>Programmation</Text>
+      
       <ScrollView style={{ marginBottom: 10, marginTop: 8 }}>
         {concert ? (
           <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: 'center' }}>
-            {concert.map((event) => {
+           <Filtscene />
+            {concert
+            // .filter
+            .map((event) => {
               let imageSource;
               switch(event.slug){
                 case "trivali":

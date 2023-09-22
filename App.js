@@ -37,7 +37,7 @@ export default function App() {
         <Drawer.Screen name="Map" component={Maponglet} />
         <Drawer.Screen name="Réseaux" component={Reseaux} />
         <Drawer.Screen name="Foire aux questions" component={Faq} />
-        <Drawer.Screen name="Group" component={Group}  options={{ titleShown: false }} />
+        <Drawer.Screen name="Group" component={Group}  options={{ title : ""}} />
       </Drawer.Navigator>
     </NavigationContainer>
 

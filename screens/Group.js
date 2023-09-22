@@ -7,7 +7,6 @@ import style from '../config/Style';
 import HTML from 'react-native-render-html';
 
 const Group = () => {
-  const imageURL = '../Images/ {}'
         const route = useRoute();
         const routes = useRoute()
         const routes2 = useRoute();
@@ -53,7 +52,7 @@ const Group = () => {
         <View style={{flex : 1,alignItems : 'center'}}>
           <Text style={style.titreProgrammation}>{eventTitle}</Text>
           <Image source={imageSource} style={{ width: 150, height: 200 ,padding : 10,margin : 10,borderRadius: 10,resizeMode : 'contain' }}  />
-            <View style={{}}>
+            <View>
             <HTML source={{ html: eventId }} contentWidth={contentWidth} tagsStyles={htmlStyles} />
             </View>
       </View>
