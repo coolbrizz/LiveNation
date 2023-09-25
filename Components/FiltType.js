@@ -23,7 +23,7 @@ const Filtscene = () => {
 
   return (
     <View>
-      <Text>Choix de scène</Text>
+      <Text>Choix du type</Text>
       <View>
         {Array.isArray(scene) && scene.length > 0 ? (
           <Picker

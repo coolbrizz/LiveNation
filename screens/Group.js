@@ -8,7 +8,7 @@ import HTML from 'react-native-render-html';
 
 const Group = () => {
         const route = useRoute();
-        const routes = useRoute()
+        const routes = useRoute();
         const routes2 = useRoute();
         const eventId = route.params.eventId;
         const eventTitle = routes.params.eventTitle;

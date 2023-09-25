@@ -7,11 +7,14 @@ import { useNavigation } from '@react-navigation/native';
 import Entete from "../Components/Entete";
 import Bouton from "../Components/Bouton";
 
+
 import Filtscene from "../Components/Filtscene";
+import FiltHeure from "../Components/FiltHeure";
+import FiltJour from "../Components/FiltJour";
+import FiltType from "../Components/FiltType";
 
 const Programmescreen = () => {
   const [concert, setConcert] = useState([]);
-
 
   useEffect(() => {
     const fetchWordPressData = async () => {
@@ -36,11 +39,13 @@ const Programmescreen = () => {
     <View style={{ flex: 1 }}>
       <Entete />
       <Text style={Style.titreProgrammation}>Programmation</Text>
-      
       <ScrollView style={{ marginBottom: 10, marginTop: 8 }}>
         {concert ? (
           <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: 'center' }}>
-           <Filtscene />
+           <Filtscene  />
+           <FiltHeure />
+           <FiltJour />
+           <FiltType />
             {concert
             // .filter
             .map((event) => {
