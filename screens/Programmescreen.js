@@ -6,8 +6,6 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from '@react-navigation/native';
 import Entete from "../Components/Entete";
 import Bouton from "../Components/Bouton";
-
-
 import Filtscene from "../Components/Filtscene";
 import FiltHeure from "../Components/FiltHeure";
 import FiltJour from "../Components/FiltJour";
@@ -15,7 +13,9 @@ import FiltType from "../Components/FiltType";
 
 const Programmescreen = () => {
   const [concert, setConcert] = useState([]);
-
+  const [selectedScene, setSelectedScene] = useState(null);
+  const handleSceneChange = (newSceneValue) => {
+    setSelectedScene(newSceneValue);};
   useEffect(() => {
     const fetchWordPressData = async () => {
       try {
@@ -42,10 +42,11 @@ const Programmescreen = () => {
       <ScrollView style={{ marginBottom: 10, marginTop: 8 }}>
         {concert ? (
           <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: 'center' }}>
-           <Filtscene  />
+           <Filtscene onChange={handleSceneChange}/>
            <FiltHeure />
            <FiltJour />
            <FiltType />
+           <Text>{selectedScene}</Text>
             {concert
             // .filter
             .map((event) => {

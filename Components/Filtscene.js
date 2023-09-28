@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Picker } from '@react-native-picker/picker';
 import React, { useEffect, useState } from "react";
 
-const Filtscene = () => {
+function Filtscene  ({onChange}) {
   const [scene, setScene] = useState([]);
   const [selectedScene, setSelectedScene] = useState(null);
 
@@ -20,6 +20,12 @@ const Filtscene = () => {
     };
     fetchScene();
   }, []);
+  useEffect(() => {
+
+    if (selectedScene !== null) {
+      onChange(selectedScene);
+    }
+  }, [selectedScene, onChange]);
 
   return (
     <View>
