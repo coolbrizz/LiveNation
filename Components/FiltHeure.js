@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Picker } from '@react-native-picker/picker';
 import React, { useEffect, useState } from "react";
 
-const Filtscene = () => {
+const Filtscene = ({onChange}) => {
   const [heure, setHeure] = useState([]);
   const [selectedHeure, setSelectedHeure] = useState(null);
 
@@ -23,13 +23,15 @@ const Filtscene = () => {
 
   return (
     <View>
-      <Text>Choix de l'heure</Text>
+      <Text   style={{color : 'black'}}>Choix de l'heure</Text>
       <View>
       </View>
       <View>
         <Picker
           selectedValue={selectedHeure}
-          onValueChange={(itemValue, itemIndex) => setSelectedHeure(itemValue)}
+          onValueChange={(itemValue, itemIndex) => {
+            setSelectedHeure(itemValue)
+          onChange(itemValue)}}
           style={{ width: 150 }}
         >
           {heure.map((heures) =>{    
@@ -38,6 +40,7 @@ const Filtscene = () => {
               key={heures.id}
               label={heures.utc_start_date_details.hour}
               value={heures.utc_start_date_details.hour}
+              color = {'red'}
             />
           )})}
         </Picker>

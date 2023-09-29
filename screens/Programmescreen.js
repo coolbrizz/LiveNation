@@ -14,8 +14,18 @@ import FiltType from "../Components/FiltType";
 const Programmescreen = () => {
   const [concert, setConcert] = useState([]);
   const [selectedScene, setSelectedScene] = useState(null);
+  const [selectedJour, setSelectedJour] = useState(null);
+  const [selectedHeure, setSelectedHeure] = useState(null)
+  
+  const handleHeureChange = (newHour) =>{
+    setSelectedHeure(newHour)}
+
+  const handleJourChange = (newJour) =>{
+    setSelectedJour(newJour)}
+  
   const handleSceneChange = (newSceneValue) => {
-    setSelectedScene(newSceneValue);};
+    setSelectedScene(newSceneValue)}
+
   useEffect(() => {
     const fetchWordPressData = async () => {
       try {
@@ -43,10 +53,9 @@ const Programmescreen = () => {
         {concert ? (
           <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: 'center' }}>
            <Filtscene onChange={handleSceneChange}/>
-           <FiltHeure />
-           <FiltJour />
+           <FiltHeure onChange={handleHeureChange}/>
+           <FiltJour onChange={handleJourChange}/>
            <FiltType />
-           <Text>{selectedScene}</Text>
             {concert
             // .filter
             .map((event) => {
@@ -144,4 +153,4 @@ const Programmescreen = () => {
   );
 };
 
-export default Programmescreen
+export default Programmescreen;

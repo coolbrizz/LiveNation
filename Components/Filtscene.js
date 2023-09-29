@@ -20,32 +20,30 @@ function Filtscene  ({onChange}) {
     };
     fetchScene();
   }, []);
-  useEffect(() => {
-
-    if (selectedScene !== null) {
-      onChange(selectedScene);
-    }
-  }, [selectedScene, onChange]);
 
   return (
     <View>
-      <Text>Choix de scène</Text>
+      <Text   style={{color : 'black'}}>Choix de scène</Text>
       <View>
         {Array.isArray(scene) && scene.length > 0 ? (
           <Picker
             selectedValue={selectedScene}
-            onValueChange={(ItemValue , itemIndex) => setSelectedScene(ItemValue)}
-            style={{width : 150}}
+            onValueChange={(itemValue, itemIndex) => {
+              setSelectedScene(itemValue);
+              onChange(itemValue); 
+            }}
+            style={{ width: 150 }}
           >
             {scene.map((scenes) => {
               if (scenes.excerpt) {
-                  return (
-                    <Picker.Item
-                      key={scenes.id}
-                      label={scenes.venue}
-                      value={scenes.venue}
-                    />
-                  );
+                return (
+                  <Picker.Item
+                    key={scenes.id}
+                    label={scenes.venue}
+                    value={scenes.venue}
+                    color = {'red'}
+                  />
+                );
               }
               return null;
             })}
@@ -55,7 +53,14 @@ function Filtscene  ({onChange}) {
         )}
       </View>
     </View>
-  )
-}
+  );
+};
 
 export default Filtscene;
+
+
+
+
+
+
+

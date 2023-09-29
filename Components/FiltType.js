@@ -1,43 +1,50 @@
 import { View, Text } from 'react-native';
 import axios from 'axios';
-import { Picker } from '@react-native-picker/picker';
+import { Picker,StyleSheet } from '@react-native-picker/picker';
 import React, { useEffect, useState } from "react";
 
-const Filtscene = () => {
-  const [scene, setScene] = useState([]);
-  const [selectedScene, setSelectedScene] = useState(null);
+const FiltType = () => {
+  const [type, setType] = useState([]);
+  const [selectedType , setSelectedType] = useState(null)
+
+  function eraseHtmlTags(html) {
+    return html.replace(/<[^>]*>/g, '');
+  }
 
   useEffect(() => {
-    const fetchScene = async () => {
+    const fetchType = async () => {
       try {
         const response = await axios.get(
-          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/venues"
+          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/events"
         );
-        setScene(response.data.venues);
+        setType(response.data.events);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchScene();
-  }, []);
 
+    fetchType();
+  }, []);
+const uniqueType = [...new Set(type.map((types) => types.excerpt))]
   return (
     <View>
-      <Text>Choix du type</Text>
+      <Text style={{color : 'black'}}>Choix du type</Text>
       <View>
-        {Array.isArray(scene) && scene.length > 0 ? (
+        {Array.isArray(type) && type.length > 0 ? (
           <Picker
-            selectedValue={selectedScene}
-            onValueChange={(ItemValue , itemIndex) => setSelectedScene(ItemValue)}
-            style={{width : 150}}
+            selectedValue={selectedType}
+            onValueChange={(ItemValue , itemIndex) => setSelectedType(ItemValue)}
+            style={{width :180}}
           >
-            {scene.map((scenes) => {
-              if (scenes.excerpt) {
+            {uniqueType.map((types) => {
+              let choice = eraseHtmlTags(types.excerpt)
+              if (types.excerpt) {
                   return (
                     <Picker.Item
-                      key={scenes.id}
-                      label={scenes.venue}
-                      value={scenes.venue}
+                      key={types.id}
+                      label={choice}
+                      value={choice}
+                      color = {'red'}
                     />
                   );
               }
@@ -51,5 +58,4 @@ const Filtscene = () => {
     </View>
   )
 }
-
-export default Filtscene;
+export default FiltType;

@@ -3,44 +3,54 @@ import axios from 'axios';
 import { Picker } from '@react-native-picker/picker';
 import React, { useEffect, useState } from "react";
 
-const Filtjour = () => {
-  const [heure, setHeure] = useState([]);
-  const [selectedHeure, setSelectedHeure] = useState(null);
+const Filtjour = ({onChange}) => {
+  const [jour, setJour] = useState([]);
+  const [selectedJour, setSelectedJour] = useState(null);
 
   useEffect(() => {
-    const fetchScene = async () => {
+    const fetchJour = async () => {
       try {
         const response = await axios.get(
           "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/events"
         );
-        setHeure(response.data.events);
+        setJour(response.data.events);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchScene();
+    fetchJour();
   }, []);
 
   return (
     <View>
-      <Text>Choix du jour</Text>
+      <Text   style={{color : 'black'}}>Choix du jour</Text>
       <View>
-      </View>
-      <View>
-        <Picker
-          selectedValue={selectedHeure}
-          onValueChange={(itemValue, itemIndex) => setSelectedHeure(itemValue)}
+      {Array.isArray(jour) && jour.length > 0 ? (
+          <Picker
+          selectedValue={selectedJour}
+          onValueChange={(itemValue, itemIndex) => {
+            setSelectedJour(itemValue);
+            onChange(itemValue); 
+          }}
           style={{ width: 150 }}
-        >
-          {heure.map((heures) =>{    
+          >
+             {jour.map((jours) =>{  
+              if(jours.utc_start_date_details.day)  {
           return(
             <Picker.Item
-              key={heures.id}
-              label={heures.utc_start_date_details.day}
-              value={heures.utc_start_date_details.day}
+              key={jours.id}
+              label={jours.utc_start_date_details.day}
+              value={jours.utc_start_date_details.day}
+              color = {'red'}
             />
-          )})}
-        </Picker>
+                );
+              }
+              return null;
+            })}
+          </Picker>
+        ) : (
+          <Text>Loading scenes...</Text>
+        )}
       </View>
     </View>
   );
