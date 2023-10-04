@@ -1,15 +1,11 @@
+import React, { useEffect, useState } from "react";
 import { View, Text } from 'react-native';
 import axios from 'axios';
-import { Picker,StyleSheet } from '@react-native-picker/picker';
-import React, { useEffect, useState } from "react";
+import { Picker } from '@react-native-picker/picker';
 
 const FiltType = () => {
   const [type, setType] = useState([]);
-  const [selectedType , setSelectedType] = useState(null)
-
-  function eraseHtmlTags(html) {
-    return html.replace(/<[^>]*>/g, '');
-  }
+  const [selectedType, setSelectedType] = useState(null);
 
   useEffect(() => {
     const fetchType = async () => {
@@ -25,28 +21,27 @@ const FiltType = () => {
 
     fetchType();
   }, []);
-const uniqueType = [...new Set(type.map((types) => types.excerpt))]
+
   return (
     <View>
-      <Text style={{color : 'black'}}>Choix du type</Text>
+      <Text style={{ color: 'black' }}>Choix du type</Text>
       <View>
         {Array.isArray(type) && type.length > 0 ? (
           <Picker
             selectedValue={selectedType}
-            onValueChange={(ItemValue , itemIndex) => setSelectedType(ItemValue)}
-            style={{width :180}}
+            onValueChange={(itemValue, itemIndex) => setSelectedType(itemValue)}
+            style={{ width: 180 }}
           >
-            {uniqueType.map((types) => {
-              let choice = eraseHtmlTags(types.excerpt)
-              if (types.excerpt) {
-                  return (
-                    <Picker.Item
-                      key={types.id}
-                      label={choice}
-                      value={choice}
-                      color = {'red'}
-                    />
-                  );
+            {type.map((event) => {
+              if (event.tags && event.tags.length > 0) {
+                return (
+                  <Picker.Item
+                    key={event.id}
+                    label={event.tags[0].name}
+                    value={event.tags[0].name}
+                    color={'red'}
+                  />
+                );
               }
               return null;
             })}
@@ -56,6 +51,7 @@ const uniqueType = [...new Set(type.map((types) => types.excerpt))]
         )}
       </View>
     </View>
-  )
-}
+  );
+};
+
 export default FiltType;
