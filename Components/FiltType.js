@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import axios from 'axios';
 import { Picker } from '@react-native-picker/picker';
 
-const FiltType = () => {
+const FiltType = ({onChange}) => {
   const [type, setType] = useState([]);
   const [selectedType, setSelectedType] = useState(null);
 
@@ -29,9 +29,12 @@ const FiltType = () => {
         {Array.isArray(type) && type.length > 0 ? (
           <Picker
             selectedValue={selectedType}
-            onValueChange={(itemValue, itemIndex) => setSelectedType(itemValue)}
+            onValueChange={(itemValue, itemIndex) =>{
+               setSelectedType(itemValue)
+              onChange(itemValue)}}
             style={{ width: 180 }}
           >
+          <Picker.Item label="Tous" value="" color = {'red'}/>
             {type.map((event) => {
               if (event.tags && event.tags.length > 0) {
                 return (

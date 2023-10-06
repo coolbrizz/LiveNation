@@ -31,14 +31,15 @@ const Filtscene = ({onChange}) => {
           selectedValue={selectedHeure}
           onValueChange={(itemValue, itemIndex) => {
             setSelectedHeure(itemValue)
-          onChange(itemValue)}}
+            onChange(itemValue)}}
           style={{ width: 150 }}
         >
+           <Picker.Item label="Tous" value="" color = {'red'}/>
           {heure.map((heures) =>{    
           return(
             <Picker.Item
               key={heures.id}
-              label={heures.utc_start_date_details.hour}
+              label={heures.utc_start_date_details.hour + " h"}
               value={heures.utc_start_date_details.hour}
               color = {'red'}
             />

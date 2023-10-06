@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 function Filtscene  ({onChange}) {
   const [scene, setScene] = useState([]);
-  const [selectedScene, setSelectedScene] = useState(null);
+  const [selectedScene, setSelectedScene] = useState("");
 
   useEffect(() => {
     const fetchScene = async () => {
@@ -34,6 +34,7 @@ function Filtscene  ({onChange}) {
             }}
             style={{ width: 150 }}
           >
+             <Picker.Item label="Tous" value="" color = {'red'}/>
             {scene.map((scenes) => {
               if (scenes.excerpt) {
                 return (

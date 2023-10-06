@@ -27,19 +27,20 @@ const Filtjour = ({onChange}) => {
       <View>
       {Array.isArray(jour) && jour.length > 0 ? (
           <Picker
-          selectedValue={selectedJour}
+          selectedValue={selectedJour }
           onValueChange={(itemValue, itemIndex) => {
             setSelectedJour(itemValue);
             onChange(itemValue); 
           }}
           style={{ width: 150 }}
           >
+          <Picker.Item label="Tous" value="" color = {'red'}/>
              {jour.map((jours) =>{  
               if(jours.utc_start_date_details.day)  {
           return(
             <Picker.Item
               key={jours.id}
-              label={jours.utc_start_date_details.day}
+              label={jours.utc_start_date_details.day +"/10"}
               value={jours.utc_start_date_details.day}
               color = {'red'}
             />

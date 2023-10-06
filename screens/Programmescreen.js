@@ -16,15 +16,17 @@ const Programmescreen = () => {
   const [selectedScene, setSelectedScene] = useState(null);
   const [selectedJour, setSelectedJour] = useState(null);
   const [selectedHeure, setSelectedHeure] = useState(null)
-  
+  const [selectedType, setSelectedType] = useState(null)
+
+  //Récupération des éléments choisit dans les input
   const handleHeureChange = (newHour) =>{
     setSelectedHeure(newHour)}
-
   const handleJourChange = (newJour) =>{
     setSelectedJour(newJour)}
-  
   const handleSceneChange = (newSceneValue) => {
     setSelectedScene(newSceneValue)}
+  const handleTypeChange = (newType) => {
+      setSelectedType(newType)}
 
   useEffect(() => {
     const fetchWordPressData = async () => {
@@ -55,9 +57,25 @@ const Programmescreen = () => {
            <Filtscene onChange={handleSceneChange}/>
            <FiltHeure onChange={handleHeureChange}/>
            <FiltJour onChange={handleJourChange}/>
-           <FiltType />
+           <FiltType onChange={handleTypeChange}/>
             {concert
             // .filter
+            .filter((choice) =>{
+              let itemChoice = [];
+              if (selectedScene == "" 
+              && selectedHeure == "" 
+              && selectedJour == "" 
+){
+                itemChoice.push(choice)
+              }else if(selectedScene == choice.venue.venue){
+                itemChoice.push(choice)
+              }else if(selectedHeure == choice.utc_start_date_details.hour ){
+                itemChoice.push(choice)
+              }else if (selectedJour == choice.utc_start_date_details.day){
+                itemChoice.push(choice)
+              }
+              return itemChoice.length > 0;
+            })
             .map((event) => {
               let imageSource;
               switch(event.slug){
