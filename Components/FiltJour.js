@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 const Filtjour = ({onChange}) => {
   const [jour, setJour] = useState([]);
-  const [selectedJour, setSelectedJour] = useState(null);
+  const [selectedJour, setSelectedJour] = useState("");
 
   useEffect(() => {
     const fetchJour = async () => {
@@ -28,11 +28,11 @@ const Filtjour = ({onChange}) => {
       {Array.isArray(jour) && jour.length > 0 ? (
           <Picker
           selectedValue={selectedJour }
-          onValueChange={(itemValue, itemIndex) => {
+          onValueChange={(itemValue) => {
             setSelectedJour(itemValue);
             onChange(itemValue); 
           }}
-          style={{ width: 150 }}
+          style={{ width: 180 }}
           >
           <Picker.Item label="Tous" value="" color = {'red'}/>
              {jour.map((jours) =>{  

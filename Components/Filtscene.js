@@ -28,11 +28,11 @@ function Filtscene  ({onChange}) {
         {Array.isArray(scene) && scene.length > 0 ? (
           <Picker
             selectedValue={selectedScene}
-            onValueChange={(itemValue, itemIndex) => {
+            onValueChange={(itemValue) => {
               setSelectedScene(itemValue);
               onChange(itemValue); 
             }}
-            style={{ width: 150 }}
+            style={{ width: 180 }}
           >
              <Picker.Item label="Tous" value="" color = {'red'}/>
             {scene.map((scenes) => {

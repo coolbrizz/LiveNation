@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 
 const Filtscene = ({onChange}) => {
   const [heure, setHeure] = useState([]);
-  const [selectedHeure, setSelectedHeure] = useState(null);
+  const [selectedHeure, setSelectedHeure] = useState("");
 
   useEffect(() => {
     const fetchScene = async () => {
@@ -29,10 +29,10 @@ const Filtscene = ({onChange}) => {
       <View>
         <Picker
           selectedValue={selectedHeure}
-          onValueChange={(itemValue, itemIndex) => {
+          onValueChange={(itemValue) => {
             setSelectedHeure(itemValue)
             onChange(itemValue)}}
-          style={{ width: 150 }}
+          style={{ width: 180 }}
         >
            <Picker.Item label="Tous" value="" color = {'red'}/>
           {heure.map((heures) =>{    

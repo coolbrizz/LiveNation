@@ -5,7 +5,7 @@ import { Picker } from '@react-native-picker/picker';
 
 const FiltType = ({onChange}) => {
   const [type, setType] = useState([]);
-  const [selectedType, setSelectedType] = useState(null);
+  const [selectedType, setSelectedType] = useState("");
 
   useEffect(() => {
     const fetchType = async () => {
@@ -24,12 +24,12 @@ const FiltType = ({onChange}) => {
 
   return (
     <View>
-      <Text style={{ color: 'black' }}>Choix du type</Text>
+      <Text style={{ color: 'black' }}>Type de musique</Text>
       <View>
         {Array.isArray(type) && type.length > 0 ? (
           <Picker
             selectedValue={selectedType}
-            onValueChange={(itemValue, itemIndex) =>{
+            onValueChange={(itemValue) =>{
                setSelectedType(itemValue)
               onChange(itemValue)}}
             style={{ width: 180 }}

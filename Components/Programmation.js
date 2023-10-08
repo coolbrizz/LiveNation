@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const Programmation = () => {
   const [concert, setConcert] = useState(null);
+  const dateConcert = '07'
 
   useEffect(() => {
     const fetchWordPressData = async () => {
@@ -27,11 +28,19 @@ const Programmation = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Text style={Style.titreProgrammation}>Programmation</Text>
+      <Text style={Style.titreProgrammation}>Programme du jour</Text>
       <ScrollView style={{ marginBottom: 10, marginTop: 8 }}>
         {concert ? (
           <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: 'center' }}>
-            {concert.map((event) => {
+            {concert
+            .filter((date) => {
+              let ajoutDate = [];
+              if(dateConcert == date.utc_start_date_details.day){
+              ajoutDate.push(date)
+              }
+              return ajoutDate.length > 0;
+            })
+            .map((event) => {
               let imageSource;
               switch(event.slug){
                 case "trivali":
@@ -118,7 +127,7 @@ const Programmation = () => {
             })}
           </View>
         ) : (
-          <Text>Chargement des données...</Text>
+          <Text>Le festival est terminée !</Text>
         )}
       </ScrollView>
     </View>

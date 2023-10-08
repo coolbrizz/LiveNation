@@ -61,20 +61,35 @@ const Programmescreen = () => {
             {concert
             // .filter
             .filter((choice) =>{
-              let itemChoice = [];
-              if (selectedScene == "" 
-              && selectedHeure == "" 
-              && selectedJour == "" 
-){
-                itemChoice.push(choice)
-              }else if(selectedScene == choice.venue.venue){
-                itemChoice.push(choice)
-              }else if(selectedHeure == choice.utc_start_date_details.hour ){
-                itemChoice.push(choice)
-              }else if (selectedJour == choice.utc_start_date_details.day){
-                itemChoice.push(choice)
+            //   let itemChoice = [];
+            //   if (selectedScene == "" 
+            //   // && selectedHeure == "" 
+            //   // && selectedJour == "" 
+            //   // && selectedType == ""
+            //   ){
+            //     itemChoice.push(choice)
+            //   }
+            //    if(selectedScene === choice.venue.venue){
+            //     itemChoice.push(choice)
+            //   }
+            //    if(selectedHeure === choice.utc_start_date_details.hour ){
+            //     itemChoice.push(choice)
+            //   }
+            //    if (selectedJour === choice.utc_start_date_details.day){
+            //     itemChoice.push(choice)
+            //   }
+            //   return itemChoice.length > 0;
+            // })
+            // .filter((choice) =>{
+              if (
+                (selectedScene === "" || selectedScene === choice.venue.venue) &&
+                (selectedHeure === "" || selectedHeure === choice.utc_start_date_details.hour) &&
+                (selectedJour === "" || selectedJour === choice.utc_start_date_details.day)
+                // Ajoutez d'autres conditions si nécessaire
+              ) {
+                return true; // Tous les critères sont satisfaits, inclure cet élément
               }
-              return itemChoice.length > 0;
+              return false; // Au moins un critère n'est pas satisfait, exclure cet élément
             })
             .map((event) => {
               let imageSource;
@@ -143,7 +158,7 @@ const Programmescreen = () => {
                               {new Date(
                                 event.utc_start_date_details.year,
                                 event.utc_start_date_details.day,
-                                event.utc_start_date_details.month - 1,
+                                event.utc_start_date_details.month ,
                               ).toLocaleDateString()}
                             </Text>
                           )}
