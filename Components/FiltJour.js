@@ -20,6 +20,7 @@ const Filtjour = ({onChange}) => {
     };
     fetchJour();
   }, []);
+const uniqueJour = [...new Set(jour)]
 
   return (
     <View>
@@ -35,19 +36,17 @@ const Filtjour = ({onChange}) => {
           style={{ width: 180 }}
           >
           <Picker.Item label="Tous" value="" color = {'red'}/>
-             {jour.map((jours) =>{  
-              if(jours.utc_start_date_details.day)  {
+             {uniqueJour.map((jours) =>{             
           return(
             <Picker.Item
-              key={jours.id}
-              label={jours.utc_start_date_details.day +"/10"}
-              value={jours.utc_start_date_details.day}
+              key={jours.utc_start_date_details.month}
+              label={jours.utc_start_date_details.day +"/" + jours.utc_start_date_details.month}
+              value={jours.utc_start_date_details.month}
               color = {'red'}
             />
                 );
               }
-              return null;
-            })}
+            )}
           </Picker>
         ) : (
           <Text>Loading scenes...</Text>

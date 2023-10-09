@@ -8,38 +8,35 @@ import { useNavigation } from '@react-navigation/native';
 
 const Programmation = () => {
   const [concert, setConcert] = useState(null);
-  const dateConcert = '07'
 
   useEffect(() => {
     const fetchWordPressData = async () => {
       try {
         const response = await axios.get(
-          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/events"
+          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/events",
+          {
+            headers: {
+              Authorization: "Bearer VOTRE_TOKEN", 
+            },
+          }
         );
         setConcert(response.data.events);
       } catch (error) {
         console.error(error);
       }
     };
-
+  
     fetchWordPressData();
   }, []);
   const navigation = useNavigation();
 
   return (
     <View style={{ flex: 1 }}>
-      <Text style={Style.titreProgrammation}>Programme du jour</Text>
+      <Text style={Style.titreProgrammation}>Programme</Text>
       <ScrollView style={{ marginBottom: 10, marginTop: 8 }}>
         {concert ? (
           <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: 'center' }}>
             {concert
-            .filter((date) => {
-              let ajoutDate = [];
-              if(dateConcert == date.utc_start_date_details.day){
-              ajoutDate.push(date)
-              }
-              return ajoutDate.length > 0;
-            })
             .map((event) => {
               let imageSource;
               switch(event.slug){
@@ -107,7 +104,7 @@ const Programmation = () => {
                               {new Date(
                                 event.utc_start_date_details.year,
                                 event.utc_start_date_details.day,
-                                event.utc_start_date_details.month - 1,
+                                event.utc_start_date_details.month,
                               ).toLocaleDateString()}
                             </Text>
                           )}

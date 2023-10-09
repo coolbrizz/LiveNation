@@ -13,10 +13,10 @@ import FiltType from "../Components/FiltType";
 
 const Programmescreen = () => {
   const [concert, setConcert] = useState([]);
-  const [selectedScene, setSelectedScene] = useState(null);
-  const [selectedJour, setSelectedJour] = useState(null);
-  const [selectedHeure, setSelectedHeure] = useState(null)
-  const [selectedType, setSelectedType] = useState(null)
+  const [selectedScene, setSelectedScene] = useState("");
+  const [selectedJour, setSelectedJour] = useState("");
+  const [selectedHeure, setSelectedHeure] = useState("")
+  const [selectedType, setSelectedType] = useState("")
 
   //Récupération des éléments choisit dans les input
   const handleHeureChange = (newHour) =>{
@@ -28,20 +28,25 @@ const Programmescreen = () => {
   const handleTypeChange = (newType) => {
       setSelectedType(newType)}
 
-  useEffect(() => {
-    const fetchWordPressData = async () => {
-      try {
-        const response = await axios.get(
-          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/events"
-        );
-        setConcert(response.data.events);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchWordPressData();
-  }, []);
+      useEffect(() => {
+        const fetchWordPressData = async () => {
+          try {
+            const response = await axios.get(
+              "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/events",
+              {
+                headers: {
+                  Authorization: "Bearer VOTRE_TOKEN",
+                },
+              }
+            );
+            setConcert(response.data.events);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+      
+        fetchWordPressData();
+      }, []);
 
 
 
@@ -60,36 +65,22 @@ const Programmescreen = () => {
            <FiltType onChange={handleTypeChange}/>
             {concert
             // .filter
-            .filter((choice) =>{
-            //   let itemChoice = [];
-            //   if (selectedScene == "" 
-            //   // && selectedHeure == "" 
-            //   // && selectedJour == "" 
-            //   // && selectedType == ""
-            //   ){
-            //     itemChoice.push(choice)
-            //   }
-            //    if(selectedScene === choice.venue.venue){
-            //     itemChoice.push(choice)
-            //   }
-            //    if(selectedHeure === choice.utc_start_date_details.hour ){
-            //     itemChoice.push(choice)
-            //   }
-            //    if (selectedJour === choice.utc_start_date_details.day){
-            //     itemChoice.push(choice)
-            //   }
-            //   return itemChoice.length > 0;
-            // })
-            // .filter((choice) =>{
-              if (
-                (selectedScene === "" || selectedScene === choice.venue.venue) &&
-                (selectedHeure === "" || selectedHeure === choice.utc_start_date_details.hour) &&
-                (selectedJour === "" || selectedJour === choice.utc_start_date_details.day)
-                // Ajoutez d'autres conditions si nécessaire
-              ) {
-                return true; // Tous les critères sont satisfaits, inclure cet élément
+            .filter((choice) => {
+              // Utilisez une variable booléenne pour suivre si un élément correspond à tous les critères
+              let itemMatches = true; // Initialisez à true car nous voulons que les éléments correspondent à tous les critères par défaut
+            
+              if (selectedScene !== "" && selectedScene !== choice.venue.venue) {
+                itemMatches = false; // L'élément ne correspond pas à ce critère, donc réglez itemMatches à false
               }
-              return false; // Au moins un critère n'est pas satisfait, exclure cet élément
+              if (selectedHeure !== "" && selectedHeure !== choice.utc_start_date_details.hour) {
+                itemMatches = false;
+              }
+              if (selectedJour !== "" && selectedJour !== choice.utc_start_date_details.day) {
+                itemMatches = false;
+              }
+            
+              // Retournez itemMatches pour décider si l'élément doit être inclus ou non
+              return itemMatches;
             })
             .map((event) => {
               let imageSource;

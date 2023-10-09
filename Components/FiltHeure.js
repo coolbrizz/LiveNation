@@ -20,7 +20,7 @@ const Filtscene = ({onChange}) => {
     };
     fetchScene();
   }, []);
-
+const uniqueHeure = [... new Set(heure)]
   return (
     <View>
       <Text   style={{color : 'black'}}>Choix de l'heure</Text>
@@ -35,10 +35,10 @@ const Filtscene = ({onChange}) => {
           style={{ width: 180 }}
         >
            <Picker.Item label="Tous" value="" color = {'red'}/>
-          {heure.map((heures) =>{    
+          {uniqueHeure.map((heures) =>{    
           return(
             <Picker.Item
-              key={heures.id}
+              key={heures.utc_start_date_details.hour}
               label={heures.utc_start_date_details.hour + " h"}
               value={heures.utc_start_date_details.hour}
               color = {'red'}

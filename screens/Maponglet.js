@@ -11,7 +11,12 @@ function Maponglet() {
     const fetchWordPressData = async () => {
       try {
         const response = await axios.get(
-          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/venues"
+          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/venues",
+          {
+            headers: {
+              Authorization: "Bearer VOTRE_TOKEN", 
+            },
+          }
         );
         setScene(response.data.venues);
       } catch (error) {
