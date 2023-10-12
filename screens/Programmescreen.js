@@ -66,11 +66,10 @@ const Programmescreen = () => {
             {concert
             // .filter
             .filter((choice) => {
-              // Utilisez une variable booléenne pour suivre si un élément correspond à tous les critères
-              let itemMatches = true; // Initialisez à true car nous voulons que les éléments correspondent à tous les critères par défaut
+              let itemMatches = true; 
             
               if (selectedScene !== "" && selectedScene !== choice.venue.venue) {
-                itemMatches = false; // L'élément ne correspond pas à ce critère, donc réglez itemMatches à false
+                itemMatches = false; 
               }
               if (selectedHeure !== "" && selectedHeure !== choice.utc_start_date_details.hour) {
                 itemMatches = false;
@@ -78,8 +77,9 @@ const Programmescreen = () => {
               if (selectedJour !== "" && selectedJour !== choice.utc_start_date_details.day) {
                 itemMatches = false;
               }
-            
-              // Retournez itemMatches pour décider si l'élément doit être inclus ou non
+              if(selectedType !== "" && selectedType !== choice.tags[0].name) {
+                itemMatches = false;
+              }
               return itemMatches;
             })
             .map((event) => {

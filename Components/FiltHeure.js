@@ -20,7 +20,13 @@ const Filtscene = ({onChange}) => {
     };
     fetchScene();
   }, []);
-const uniqueHeure = [... new Set(heure)]
+  const uniqueHeure = Array.from(new Set(heure.map(heures => heures.utc_start_date_details.hour)))
+  .map(hour => ({
+    utc_start_date_details: {
+      hour,
+    }
+  }));
+
   return (
     <View>
       <Text   style={{color : 'black'}}>Choix de l'heure</Text>

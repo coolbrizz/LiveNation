@@ -29,21 +29,20 @@ const Informations = () => {
 
   return (
     <View>
+            <ScrollView>
       <Entete />
-      <ScrollView>
-      <View>
 
+      <View >
         {events.map((event) => (
           <View key={event.id}>
             <Text style={{ color : 'black', fontSize : 25, textAlign : "center", fontWeight : 'bold'}}>{event.title.rendered}</Text>
             <HTML source={{ html: event.content.rendered }} 
             contentWidth={contentWidth}
             tagsStyles={htmlStyles}/>
+            <Text style ={{fontSize : 50, color : 'red', textAlign: 'center', fontWeight : 'bold'}}>&darr; &darr; </Text>
           </View>
         ))}
-
       </View>
-
       <Bouton />
       </ScrollView>
     </View>

@@ -20,7 +20,13 @@ const Filtjour = ({onChange}) => {
     };
     fetchJour();
   }, []);
-const uniqueJour = [...new Set(jour)]
+  const uniqueJour = Array.from(new Set(jour.map(item => item.utc_start_date_details.day)))
+    .map(day => ({
+      utc_start_date_details: {
+        day,
+        // autres propriétés...
+      }
+    }));
 
   return (
     <View>
@@ -39,9 +45,9 @@ const uniqueJour = [...new Set(jour)]
              {uniqueJour.map((jours) =>{             
           return(
             <Picker.Item
-              key={jours.utc_start_date_details.month}
-              label={jours.utc_start_date_details.day +"/" + jours.utc_start_date_details.month}
-              value={jours.utc_start_date_details.month}
+              key={jours.utc_start_date_details.day}
+              label={jours.utc_start_date_details.day +"/12"}
+              value={jours.utc_start_date_details.day}
               color = {'red'}
             />
                 );

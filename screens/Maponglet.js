@@ -45,7 +45,7 @@ function Maponglet() {
           let imageSpot;
           switch (scene.venue){
             case"Toilettes" : 
-            imageSpot= require('../Images/toilette.jpg');
+            imageSpot= require('../Images/toilette.png');
             break
             case "Shop" : 
             imageSpot = require('../Images/shop.png');

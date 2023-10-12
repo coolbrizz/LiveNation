@@ -21,40 +21,46 @@ const FiltType = ({onChange}) => {
 
     fetchType();
   }, []);
-
   return (
     <View>
       <Text style={{ color: 'black' }}>Type de musique</Text>
       <View>
-        {Array.isArray(type) && type.length > 0 ? (
-          <Picker
-            selectedValue={selectedType}
-            onValueChange={(itemValue) =>{
-               setSelectedType(itemValue)
-              onChange(itemValue)}}
-            style={{ width: 180 }}
-          >
-          <Picker.Item label="Tous" value="" color = {'red'}/>
-            {type.map((event) => {
-              if (event.tags && event.tags.length > 0) {
-                return (
-                  <Picker.Item
-                    key={event.id}
-                    label={event.tags[0].name}
-                    value={event.tags[0].name}
-                    color={'red'}
-                  />
-                );
-              }
-              return null;
-            })}
-          </Picker>
-        ) : (
-          <Text>Loading scenes...</Text>
-        )}
+      {Array.isArray(type) && type.length > 0 ? (
+  <Picker
+    selectedValue={selectedType}
+    onValueChange={(itemValue) => {
+      setSelectedType(itemValue);
+      onChange(itemValue);
+    }}
+    style={{ width: 180 }}
+  >
+    <Picker.Item label="Tous" value="" color={'red'} />
+    {type.map((event) => {
+      if (event.tags && event.tags.length > 0) {
+        const uniqueTags = [];
+        event.tags.forEach(tag => {
+          if (!uniqueTags.includes(tag.name)) {
+            uniqueTags.push(tag.name);
+          }
+        });
+        return uniqueTags.map((tagName, index) => (
+          <Picker.Item
+            key={index} 
+            label={tagName}
+            value={tagName}
+            color={'red'}
+          />
+        ));
+      }
+      return null;
+    })}
+  </Picker>
+) : (
+  <Text>Loading scenes...</Text>
+)}
       </View>
     </View>
-  );
+);
 };
 
 export default FiltType;
