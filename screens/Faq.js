@@ -6,7 +6,7 @@ import { StyleSheet} from 'react-native';
 
 const Faq = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const scrollViewRef = useRef(null); // Declare the ref using useRef
+  const scrollViewRef = useRef(null);
 
   const handleScroll = event => {
     const currentPosition = event.nativeEvent.contentOffset.y;
@@ -23,7 +23,7 @@ const Faq = () => {
       <Entete />
       <Text style={Style.titleFaq}>Foire aux Questions</Text>
       <ScrollView
-        ref={scrollViewRef} // Pass the ref to the ScrollView component
+        ref={scrollViewRef} 
         onScroll={handleScroll}
         scrollEventThrottle={16}
       >

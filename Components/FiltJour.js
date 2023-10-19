@@ -24,7 +24,6 @@ const Filtjour = ({onChange}) => {
     .map(day => ({
       utc_start_date_details: {
         day,
-        // autres propriétés...
       }
     }));
 

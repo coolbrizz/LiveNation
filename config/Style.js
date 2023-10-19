@@ -79,6 +79,39 @@ export default {
         fontSize : 20,
         fontWeight : 'bold',
         color : rouge,
+      }, 
+      buttonFilter : {
+        backgroundColor : 'red',
+        left : 10,
+        zIndex : 80,
+        paddingTop: 10, 
+    paddingLeft: 20,
+    paddingBottom: 10, 
+    paddingRight: 20,
+    borderRadius : 10,
+      },
+      textButtonFilter : {
+        color : 'white', 
+        fontWeight : 'bold', 
+        fontSize : 18
+      },
+      caseFilter : {
+        position : 'absolute', 
+      top : 100,
+      left : 10,
+      zIndex : 80,
+      },
+      buttonFilterOpen : {
+        backgroundColor : 'red',
+        left : 10,
+        zIndex : 85,
+        paddingTop: 10, 
+    paddingLeft: 20,
+    paddingBottom: 10, 
+    paddingRight: 20,
+    borderRadius : 10,
+    width : '100%',
+    height : 100,
       }
       
 
