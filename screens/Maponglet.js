@@ -7,6 +7,10 @@ import axios from "axios";
 
 function Maponglet() {
   const [scene, setScene] = useState([]);
+  const [receivedChoice , setReceivedChoice]= useState([]);
+  const handleReceivedData = (data) => {
+    setReceivedChoice(data)
+  }
 
   useEffect(() => {
     const fetchWordPressData = async () => {
@@ -31,7 +35,8 @@ function Maponglet() {
   return (
     <View style={styles.container}>
       <Entete />
-      <FiltMap />
+      <FiltMap onSendData={handleReceivedData}/>
+      <Text>{receivedChoice}</Text>
       <MapView
         style={styles.map}
         initialRegion={{

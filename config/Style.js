@@ -112,8 +112,19 @@ export default {
     borderRadius : 10,
     width : '100%',
     height : 100,
+      }, 
+      filtreNonChoisi : {
+        margin : 10, 
+        fontSize : 18, 
+        color : 'white',
+        fontWeight : 'bold',
+        textDecorationLine:'none'
+      },
+      filtreChoisi :{
+        color : 'black', 
+        textDecorationLine: 'line-through',
+
       }
-      
 
 
 

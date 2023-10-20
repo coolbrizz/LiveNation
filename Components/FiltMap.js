@@ -2,10 +2,11 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import React, {useState} from 'react'
 import Style from '../config/Style'
 
-const FiltMap = () => {
+const FiltMap = ({onSendData}) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [checkBoxValue, setCheckBoxValue] = useState(false)
   const scene = ["Toilettes", "Scène" , "Shop", "Buvette"]
+  const [arrayChoice , setArrayChoice ]= useState([]);
+
 
 const openFilter = () =>{
 setIsFilterOpen(true)
@@ -13,8 +14,16 @@ setIsFilterOpen(true)
 const closeFilter = () =>{
   setIsFilterOpen(false)
 };
-const handleCheckBoxChange = () => {
-  setCheckBoxValue(!checkBoxValue);
+const handleCheckBoxChange = (lieu) => {
+  if (arrayChoice.includes(lieu)) {
+    const updatedChoices = arrayChoice.filter((choice) => choice !== lieu);
+    setArrayChoice(updatedChoices);
+    onSendData(updatedChoices)
+  } else {
+    const updatedChoices = [...arrayChoice, lieu]
+    setArrayChoice([...arrayChoice, lieu]);
+    onSendData(updatedChoices)
+  }
 };
   return (
     <View style={Style.caseFilter}>
@@ -25,10 +34,11 @@ const handleCheckBoxChange = () => {
             </TouchableOpacity>
           <View style={{flexDirection : "row", padding : 10}}>
           {scene.map((lieu) =>
-              <TouchableOpacity onPress={handleCheckBoxChange}>              
-                      <Text style={{margin : 10, fontSize : 18}}>{lieu} </Text>
+              <TouchableOpacity key={lieu} onPress={() =>handleCheckBoxChange(lieu)}>              
+                      <Text style={[Style.filtreNonChoisi, arrayChoice.includes(lieu) && Style.filtreChoisi]}>{lieu} </Text>
               </TouchableOpacity>)}
            </View>
+           <Text>{arrayChoice}</Text>
         </View>) : (
       <View style={Style.buttonFilter}>
         <TouchableOpacity onPress={openFilter}>
