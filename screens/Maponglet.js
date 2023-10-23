@@ -15,15 +15,33 @@ function Maponglet() {
   useEffect(() => {
     const fetchWordPressData = async () => {
       try {
-        const response = await axios.get(
-          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/venues",
+        const responsePage1 = await axios.get(
+          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/venues?page=1",
           {
             headers: {
-              Authorization: "Bearer VOTRE_TOKEN", 
+              Authorization: "Bearer VOTRE_TOKEN",
+            },
+            params: {
+              page: 1, // Récupérer la première page
             },
           }
         );
-        setScene(response.data.venues);
+  
+        const responsePage2 = await axios.get(
+          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/venues?page=1",
+          {
+            headers: {
+              Authorization: "Bearer VOTRE_TOKEN",
+            },
+            params: {
+              page: 2, // Récupérer la deuxième page
+            },
+          }
+        );
+       
+          const dataForPage1 = responsePage1.data.venues;
+          const dataForPage2 = responsePage2.data.venues;
+          setScene([...dataForPage1, ...dataForPage2]);
       } catch (error) {
         console.error(error);
       }
@@ -36,7 +54,6 @@ function Maponglet() {
     <View style={styles.container}>
       <Entete />
       <FiltMap onSendData={handleReceivedData}/>
-      <Text>{receivedChoice}</Text>
       <MapView
         style={styles.map}
         initialRegion={{
@@ -46,7 +63,11 @@ function Maponglet() {
           longitudeDelta: 0.0421,
         }}
       >
-        {scene.map((scene) => {
+        {scene
+        .filter((selectedChoice) => {
+            return !receivedChoice.includes(selectedChoice.venue);
+          })
+        .map((scene) => {
           function removeHTMLTags(input) {
             if(input){
             return input.replace(/<[^>]*>/g, "");

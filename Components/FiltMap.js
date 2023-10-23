@@ -38,7 +38,6 @@ const handleCheckBoxChange = (lieu) => {
                       <Text style={[Style.filtreNonChoisi, arrayChoice.includes(lieu) && Style.filtreChoisi]}>{lieu} </Text>
               </TouchableOpacity>)}
            </View>
-           <Text>{arrayChoice}</Text>
         </View>) : (
       <View style={Style.buttonFilter}>
         <TouchableOpacity onPress={openFilter}>

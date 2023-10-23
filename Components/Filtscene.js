@@ -6,19 +6,40 @@ import React, { useEffect, useState } from "react";
 function Filtscene  ({onChange}) {
   const [scene, setScene] = useState([]);
   const [selectedScene, setSelectedScene] = useState("");
-
   useEffect(() => {
-    const fetchScene = async () => {
+    const fetchWordPressData = async () => {
       try {
-        const response = await axios.get(
-          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/venues"
+        const responsePage1 = await axios.get(
+          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/venues?page=1",
+          {
+            headers: {
+              Authorization: "Bearer VOTRE_TOKEN",
+            },
+            params: {
+              page: 1,
+          }
+          });
+  
+        const responsePage2 = await axios.get(
+          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/venues?page=1",
+          {
+            headers: {
+              Authorization: "Bearer VOTRE_TOKEN",
+            },
+            params: {
+              page: 2,
+            },
+          }
         );
-        setScene(response.data.venues);
+          const dataForPage1 = responsePage1.data.venues;
+          const dataForPage2 = responsePage2.data.venues;
+          setScene([...dataForPage1, ...dataForPage2]);
       } catch (error) {
         console.error(error);
       }
     };
-    fetchScene();
+
+    fetchWordPressData();
   }, []);
 
   return (
