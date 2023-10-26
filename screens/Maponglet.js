@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import MapView, { Marker,Callout } from 'react-native-maps';
-import Entete from "../Components/Entete" 
+import MapView, { Marker, Callout } from 'react-native-maps';
+import Entete from "../Components/Entete";
 import FiltMap from "../Components/FiltMap";
 import axios from "axios";
 
 function Maponglet() {
   const [scene, setScene] = useState([]);
-  const [receivedChoice , setReceivedChoice]= useState([]);
+  const [receivedChoice, setReceivedChoice] = useState([]);
   const handleReceivedData = (data) => {
-    setReceivedChoice(data)
-  }
+    setReceivedChoice(data);
+  };
 
   useEffect(() => {
     const fetchWordPressData = async () => {
@@ -22,26 +22,25 @@ function Maponglet() {
               Authorization: "Bearer VOTRE_TOKEN",
             },
             params: {
-              page: 1, // Récupérer la première page
-            },
+              page: 1,
+            }
           }
         );
-  
+
         const responsePage2 = await axios.get(
-          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/venues?page=1",
+          "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/venues?page=2",
           {
             headers: {
               Authorization: "Bearer VOTRE_TOKEN",
             },
             params: {
-              page: 2, // Récupérer la deuxième page
+              page: 2,
             },
           }
         );
-       
-          const dataForPage1 = responsePage1.data.venues;
-          const dataForPage2 = responsePage2.data.venues;
-          setScene([...dataForPage1, ...dataForPage2]);
+        const dataForPage1 = responsePage1.data.venues;
+        const dataForPage2 = responsePage2.data.venues;
+        setScene([...dataForPage1, ...dataForPage2]);
       } catch (error) {
         console.error(error);
       }
@@ -50,10 +49,17 @@ function Maponglet() {
     fetchWordPressData();
   }, []);
 
+  const removeHTMLTags = (input) => {
+    if (input) {
+      return input.replace(/<[^>]*>/g, "");
+    }
+    return input;
+  };
+
   return (
     <View style={styles.container}>
       <Entete />
-      <FiltMap onSendData={handleReceivedData}/>
+      <FiltMap onSendData={handleReceivedData} />
       <MapView
         style={styles.map}
         initialRegion={{
@@ -63,54 +69,48 @@ function Maponglet() {
           longitudeDelta: 0.0421,
         }}
       >
-        {scene
-        .filter((selectedChoice) => {
-            return !receivedChoice.includes(selectedChoice.venue);
-          })
-        .map((scene) => {
-          function removeHTMLTags(input) {
-            if(input){
-            return input.replace(/<[^>]*>/g, "");
-            }return input}
+        {scene.map((scene) => {
           const latitude = parseFloat(scene.address);
           const longitude = parseFloat(scene.city);
-          const description= removeHTMLTags(scene.description);
+          const description = removeHTMLTags(scene.description);
           let imageSpot;
-          switch (scene.venue){
-            case"Toilettes" : 
-            imageSpot= require('../Images/toilette.png');
-            break
-            case "Shop" : 
-            imageSpot = require('../Images/shop.png');
-            break
-            case "Buvette" : 
-            imageSpot =  require ('../Images/buvette.png')
-            break;
-            default : 
-            imageSpot= require('../Images/scene.png');
-            break
+          switch (scene.venue) {
+            case "Toilettes":
+              imageSpot = require('../Images/toilette.png');
+              break;
+            case "Shop":
+              imageSpot = require('../Images/shop.png');
+              break;
+            case "Buvette":
+              imageSpot = require('../Images/buvette.png');
+              break;
+            default:
+              imageSpot = require('../Images/scene.png');
+              break;
           }
 
-          return (
-            <Marker
-              key={scene.id}
-              coordinate={{
-                latitude: latitude,
-                longitude: longitude,
-              }}
-              title={scene.venue}
-              image={imageSpot}
-            >
-                  <Callout>
-                <View style={styles.calloutContainer}>
-                  <Text style={styles.calloutTitle}>{scene.venue}</Text>
-                  <Text style={styles.calloutDescription}>{description}</Text>
-                </View>
-              </Callout>
-            </Marker>
-          );
+          if (!receivedChoice.length || receivedChoice.includes(scene.venue) || receivedChoice.includes(description)) {
+            return (
+              <Marker
+                key={scene.id}
+                coordinate={{
+                  latitude: latitude,
+                  longitude: longitude,
+                }}
+                title={scene.venue}
+                image={imageSpot}
+              >
+                <Callout>
+                  <View style={styles.calloutContainer}>
+                    <Text style={styles.calloutTitle}>{scene.venue}</Text>
+                    <Text style={styles.calloutDescription}>{description}</Text>
+                  </View>
+                </Callout>
+              </Marker>
+            );
+          }
+          return null; 
         })}
-
       </MapView>
     </View>
   );
@@ -139,3 +139,4 @@ const styles = StyleSheet.create({
 });
 
 export default Maponglet;
+

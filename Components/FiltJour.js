@@ -20,6 +20,8 @@ const Filtjour = ({onChange}) => {
     };
     fetchJour();
   }, []);
+
+  //Eviter les doublons
   const uniqueJour = Array.from(new Set(jour.map(item => item.utc_start_date_details.day)))
     .map(day => ({
       utc_start_date_details: {
@@ -29,6 +31,7 @@ const Filtjour = ({onChange}) => {
 
   return (
     <View>
+      <Text>{itemValue}</Text>
       <Text   style={{color : 'black'}}>Choix du jour</Text>
       <View>
       {Array.isArray(jour) && jour.length > 0 ? (
@@ -44,15 +47,16 @@ const Filtjour = ({onChange}) => {
              {uniqueJour.map((jours) =>{             
           return(
             <Picker.Item
-              key={jours.utc_start_date_details.day}
-              label={jours.utc_start_date_details.day +"/12"}
-              value={jours.utc_start_date_details.day}
-              color = {'red'}
-            />
+            key={jours.utc_start_date_details.day}
+            label={String(parseInt(jours.utc_start_date_details.day) + 1) + "/12"}
+            value={String(parseInt(jours.utc_start_date_details.day) + 1)}
+            color={'red'}
+          />
                 );
               }
             )}
           </Picker>
+
         ) : (
           <Text>Loading scenes...</Text>
         )}

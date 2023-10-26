@@ -5,7 +5,7 @@ import Style from '../config/Style'
 const FiltMap = ({onSendData}) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const scene = ["Toilettes", "Scène" , "Shop", "Buvette"]
-  const [arrayChoice , setArrayChoice ]= useState([]);
+  const [arrayChoice , setArrayChoice ]= useState(["Toilettes", "Scène" , "Shop", "Buvette"]);
 
 
 const openFilter = () =>{
@@ -29,13 +29,14 @@ const handleCheckBoxChange = (lieu) => {
     <View style={Style.caseFilter}>
       {isFilterOpen ? (
         <View style={Style.buttonFilterOpen} >
-            <TouchableOpacity onPress={closeFilter}>
-              <Text style={Style.textButtonFilter}>FILTRE : </Text>
+            <TouchableOpacity style={{flexDirection : "row"}} onPress={closeFilter}>
+              <Text style={Style.textButtonFilter}>FILTRE  </Text>
+              <Text style={{color : "white",position : 'absolute', right : 5, fontWeight : "bold"}}> X </Text>
             </TouchableOpacity>
           <View style={{flexDirection : "row", padding : 10}}>
           {scene.map((lieu) =>
               <TouchableOpacity key={lieu} onPress={() =>handleCheckBoxChange(lieu)}>              
-                      <Text style={[Style.filtreNonChoisi, arrayChoice.includes(lieu) && Style.filtreChoisi]}>{lieu} </Text>
+                      <Text style={[Style.filtreChoisi, arrayChoice.includes(lieu) && Style.filtreNonChoisi]}>{lieu} </Text>
               </TouchableOpacity>)}
            </View>
         </View>) : (

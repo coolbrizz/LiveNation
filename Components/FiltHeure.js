@@ -20,6 +20,7 @@ const Filtscene = ({onChange}) => {
     };
     fetchScene();
   }, []);
+    //Eviter les doublons
   const uniqueHeure = Array.from(new Set(heure.map(heures => heures.utc_start_date_details.hour)))
   .map(hour => ({
     utc_start_date_details: {

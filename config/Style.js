@@ -123,7 +123,9 @@ export default {
       filtreChoisi :{
         color : 'black', 
         textDecorationLine: 'line-through',
-
+        margin : 10, 
+        fontSize : 18, 
+        fontWeight : 'bold',
       }
 
 
