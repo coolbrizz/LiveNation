@@ -6,6 +6,7 @@ import { Picker } from '@react-native-picker/picker';
 const FiltType = ({onChange}) => {
   const [type, setType] = useState([]);
   const [selectedType, setSelectedType] = useState("");
+  const [uniqueTags, setUniqueTags] = useState([])
 
   useEffect(() => {
     const fetchType = async () => {
@@ -14,6 +15,15 @@ const FiltType = ({onChange}) => {
           "http://192.168.1.20/LiveNation/wp-json/tribe/events/v1/events"
         );
         setType(response.data.events);
+        const tagsSet = new Set();
+        response.data.events.forEach((event) => {
+          if (event.tags && event.tags.length > 0) {
+            event.tags.forEach((tag) => {
+              tagsSet.add(tag.name);
+            });
+          }
+        });
+        setUniqueTags(Array.from(tagsSet));
       } catch (error) {
         console.error(error);
       }
@@ -35,25 +45,15 @@ const FiltType = ({onChange}) => {
     style={{ width: 180 }}
   >
     <Picker.Item label="Tous" value="" color={'red'} />
-    {type.map((event) => {
-      if (event.tags && event.tags.length > 0) {
-        const uniqueTags = [];
-        event.tags.forEach(tag => {
-          if (!uniqueTags.includes(tag.name)) {
-            uniqueTags.push(tag.name);
-          }
-        });
-        return uniqueTags.map((tagName, index) => (
+    {uniqueTags.map((tagName, index) => (
           <Picker.Item
             key={index} 
             label={tagName}
             value={tagName}
             color={'red'}
           />
-        ));
+        ))
       }
-      return null;
-    })}
   </Picker>
 ) : (
   <Text>Loading scenes...</Text>

@@ -31,7 +31,6 @@ const Filtjour = ({onChange}) => {
 
   return (
     <View>
-      <Text>{itemValue}</Text>
       <Text   style={{color : 'black'}}>Choix du jour</Text>
       <View>
       {Array.isArray(jour) && jour.length > 0 ? (
@@ -48,8 +47,8 @@ const Filtjour = ({onChange}) => {
           return(
             <Picker.Item
             key={jours.utc_start_date_details.day}
-            label={String(parseInt(jours.utc_start_date_details.day) + 1) + "/12"}
-            value={String(parseInt(jours.utc_start_date_details.day) + 1)}
+            label={parseInt(jours.utc_start_date_details.day) + 1 + "/12"}
+            value={jours.utc_start_date_details.day}
             color={'red'}
           />
                 );
